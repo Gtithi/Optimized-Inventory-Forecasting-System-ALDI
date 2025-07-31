@@ -161,4 +161,5 @@ Supervised by: Prof. Dr. Sven Müller (RWTH), Florian Hahn (Aldi Süd), Sarah Wo
 
 ## 📄 License
 
-This repository is open-sourced under the MIT License. See [LICENSE](LICENSE) for more details.
+This repository is licensed under the [MIT License](LICENSE).
+
