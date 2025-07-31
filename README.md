@@ -1,95 +1,73 @@
-Optimized Inventory Forecasting System – ALDI Süd
+# 👁️ Optimized Inventory Forecasting System – ALDI Süd
 
 This project implements a short-term inventory forecasting system using machine learning models (XGBoost and LSTM) on real-world retail data from Aldi Süd Austria. The goal is to predict the inventory level for a selected product over a 7-day horizon to enhance operational efficiency and reduce stockouts or overstocking.
 
-📌 Project Objective
+---
 
-Predict next 7 days of inventory levels for a single product in Aldi Süd outlets.
+## 📌 Project Objective
 
-Compare the performance of LSTM (neural networks for sequence modeling) and XGBoost (tree-based regression).
+* Predict next 7 days of inventory levels for a single product in Aldi Süd outlets.
+* Compare the performance of LSTM (neural networks for sequence modeling) and XGBoost (tree-based regression).
+* Deliver actionable insights to improve demand planning and stock control.
 
-Deliver actionable insights to improve demand planning and stock control.
+---
 
-📊 Dataset Description
+## 📊 Dataset Description
 
 Data provided by Aldi Süd includes:
 
-sales.csv — Historical daily product sales (units/weight)
+* `sales.csv` — Historical daily product sales (units/weight)
+* `inventory.csv` — Daily closing inventory levels
+* `delivery.csv` — Product delivery records to stores
+* `writeoffs.csv` — Write-offs due to spoilage/damage
+* `forecast.csv` — Aldi’s internal demand forecast
 
-inventory.csv — Daily closing inventory levels
+> Period: January 2023 – June 2024
+> Stores: 3 outlets
+> Products: 90 (only 1 selected for final modeling)
 
-delivery.csv — Product delivery records to stores
+---
 
-writeoffs.csv — Write-offs due to spoilage/damage
+## 🧪 Methodology
 
-forecast.csv — Aldi’s internal demand forecast
+### Models Considered
 
-Period: January 2023 – June 2024Stores: 3 outletsProducts: 90 (only 1 selected for final modeling)
+* **ARIMA** (Rejected early due to weak performance)
+* **Prophet** (Not used further)
+* **XGBoost**: Gradient-boosted trees, fast but weak with sequential patterns
+* ✅ **LSTM**: Chosen for final forecasting due to superior handling of temporal dependencies
 
-🧪 Methodology
+### Model Process
 
-Models Considered
+1. Data cleaning & merging
+2. Feature creation & sequence preparation
+3. Train/test split
+4. Hyperparameter tuning
+5. Forecast generation
+6. Performance evaluation using MAE, MSE, R²
+7. Visual comparison of actual vs predicted inventory
 
-ARIMA (Rejected early due to weak performance)
+---
 
-Prophet (Not used further)
+## 📊 Results
 
-XGBoost: Gradient-boosted trees, fast but weak with sequential patterns
+| Metric | LSTM (Final Model) | XGBoost (Baseline) |
+| ------ | ------------------ | ------------------ |
+| MAE    | 17.6               | 3.97               |
+| MSE    | 28.6               | 94.05              |
+| R²     | ∼ Not reported     | 0.93               |
 
-✅ LSTM: Chosen for final forecasting due to superior handling of temporal dependencies
+* LSTM captured **short-term trends** effectively (1–3 days).
+* Forecast degraded slightly for days 4–7, common in sequence modeling.
+* XGBoost did well with lag features but lacked sequential memory.
 
-Model Process
+> ⚠️ Note: LSTM was chosen for robustness despite slightly higher MAE, due to better generalization and adaptability.
 
-Data cleaning & merging
+---
 
-Feature creation & sequence preparation
+## 📂 Folder Structure
 
-Train/test split
-
-Hyperparameter tuning
-
-Forecast generation
-
-Performance evaluation using MAE, MSE, R²
-
-Visual comparison of actual vs predicted inventory
-
-📊 Results
-
-Metric
-
-LSTM (Final Model)
-
-XGBoost (Baseline)
-
-MAE
-
-17.6
-
-3.97
-
-MSE
-
-28.6
-
-94.05
-
-R²
-
-∼ Not reported
-
-0.93
-
-LSTM captured short-term trends effectively (1–3 days).
-
-Forecast degraded slightly for days 4–7, common in sequence modeling.
-
-XGBoost did well with lag features but lacked sequential memory.
-
-⚠️ Note: LSTM was chosen for robustness despite slightly higher MAE, due to better generalization and adaptability.
-
-📂 Folder Structure
-
+```
 Optimized-Inventory-Forecasting-System-ALDI/
 ├── aldi_forecasting.ipynb           # Cleaned notebook (rename from Untitled1)
 ├── README.md                        # This documentation
@@ -103,72 +81,84 @@ Optimized-Inventory-Forecasting-System-ALDI/
 ├── figures/                         # Forecasting plots, metrics, etc.
 │   └── inventory_forecast.png
 └── LICENSE                          # MIT or academic license
+```
 
-⚙️ Setup & Installation
+---
 
-📦 Dependencies
+## ⚙️ Setup & Installation
+
+### 📦 Dependencies
 
 Install all required packages:
 
+```bash
 pip install -r requirements.txt
+```
 
 Or set up a virtual environment:
 
+```bash
 python -m venv venv
 source venv/bin/activate      # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
+```
 
-▶️ How to Run
+---
 
-Clone this repo:
+## ▶️ How to Run
 
+1. Clone this repo:
+
+```bash
 git clone https://github.com/Gtithi/Optimized-Inventory-Forecasting-System-ALDI.git
 cd Optimized-Inventory-Forecasting-System-ALDI
+```
 
-Open the Jupyter notebook:
+2. Open the Jupyter notebook:
 
+```bash
 jupyter notebook aldi_forecasting.ipynb
+```
 
 Or run in Google Colab directly by uploading it.
 
-Step through the notebook sections:
+3. Step through the notebook sections:
 
-Data preparation
+   * Data preparation
+   * Model training
+   * Forecasting and visualization
+   * Result evaluation
 
-Model training
+---
 
-Forecasting and visualization
+## 📷 Visualizations
 
-Result evaluation
+All key plots are saved under `/figures`:
 
-📷 Visualizations
+* `inventory_forecast.png` — LSTM forecast vs. actual inventory
+* `loss_curve.png` — Model training loss progression
+* `xgb_comparison.png` — XGBoost prediction visualization
 
-All key plots are saved under /figures:
+---
 
-inventory_forecast.png — LSTM forecast vs. actual inventory
+## 📚 References
 
-loss_curve.png — Model training loss progression
+* Akanksha et al. (2022), ICICT: Store-Sales Forecasting
+* Jean-Claude Munyaka et al. (2022): Inventory Management Review
+* RWTH Aachen course material (Chair of Data & Business Analytics)
 
-xgb_comparison.png — XGBoost prediction visualization
+---
 
-📚 References
+## 👥 Authors
 
-Akanksha et al. (2022), ICICT: Store-Sales Forecasting
-
-Jean-Claude Munyaka et al. (2022): Inventory Management Review
-
-RWTH Aachen course material (Chair of Data & Business Analytics)
-
-👥 Authors
-
-Tithi Ghosh – @Gtithi
-
-Mainak Dasgupta
-
-Ritesh Radhakrishnan
+* Tithi Ghosh – [@Gtithi](https://github.com/Gtithi)
+* Mainak Dasgupta
+* Ritesh Radhakrishnan
 
 Supervised by: Prof. Dr. Sven Müller (RWTH), Florian Hahn (Aldi Süd), Sarah Woldrich (Aldi Süd)
 
-📄 License
+---
 
-This repository is open-sourced under the MIT License. See LICENSE for more details.
+## 📄 License
+
+This repository is open-sourced under the MIT License. See [LICENSE](LICENSE) for more details.
