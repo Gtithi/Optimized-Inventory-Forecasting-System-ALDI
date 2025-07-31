@@ -1,10 +1,10 @@
-# 👁️ Optimized Inventory Forecasting System – ALDI Süd
+#  Optimized Inventory Forecasting System – ALDI Süd
 
 This project implements a short-term inventory forecasting system using machine learning models (XGBoost and LSTM) on real-world retail data from Aldi Süd Austria. The goal is to predict the inventory level for a selected product over a 7-day horizon to enhance operational efficiency and reduce stockouts or overstocking.
 
 ---
 
-## 📌 Project Objective
+##  Project Objective
 
 * Predict next 7 days of inventory levels for a single product in Aldi Süd outlets.
 * Compare the performance of LSTM (neural networks for sequence modeling) and XGBoost (tree-based regression).
@@ -12,7 +12,7 @@ This project implements a short-term inventory forecasting system using machine 
 
 ---
 
-## 📊 Dataset Description
+##  Dataset Description
 
 Data provided by Aldi Süd includes:
 
@@ -28,14 +28,14 @@ Data provided by Aldi Süd includes:
 
 ---
 
-## 🧪 Methodology
+##  Methodology
 
 ### Models Considered
 
 * **ARIMA** (Rejected early due to weak performance)
 * **Prophet** (Not used further)
 * **XGBoost**: Gradient-boosted trees, fast but weak with sequential patterns
-* ✅ **LSTM**: Chosen for final forecasting due to superior handling of temporal dependencies
+* **LSTM**: Chosen for final forecasting due to superior handling of temporal dependencies
 
 ### Model Process
 
@@ -49,7 +49,7 @@ Data provided by Aldi Süd includes:
 
 ---
 
-## 📊 Results
+##  Results
 
 | Metric | LSTM (Final Model) | XGBoost (Baseline) |
 | ------ | ------------------ | ------------------ |
@@ -61,7 +61,7 @@ Data provided by Aldi Süd includes:
 * Forecast degraded slightly for days 4–7, common in sequence modeling.
 * XGBoost did well with lag features but lacked sequential memory.
 
-> ⚠️ Note: LSTM was chosen for robustness despite slightly higher MAE, due to better generalization and adaptability.
+>  Note: LSTM was chosen for robustness despite slightly higher MAE, due to better generalization and adaptability.
 
 ---
 
@@ -87,7 +87,7 @@ Optimized-Inventory-Forecasting-System-ALDI/
 
 ## ⚙️ Setup & Installation
 
-### 📦 Dependencies
+###  Dependencies
 
 Install all required packages:
 
@@ -105,7 +105,7 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ How to Run
+##  How to Run
 
 1. Clone this repo:
 
